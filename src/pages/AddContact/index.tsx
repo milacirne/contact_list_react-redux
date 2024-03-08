@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { addContact } from '../../redux/contact/slice'
 import Container from '../../components/Container'
 import * as S from '../EditContact/styles'
+import { RootReducer } from '../../redux/store'
 
 ///////////// REGEX FUNCTION
 export const isValidName = (value: string) => {
@@ -13,6 +14,7 @@ export const isValidName = (value: string) => {
 }
 
 const AddContact = () => {
+  const { contacts } = useSelector((state: RootReducer) => state.contacts)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -22,6 +24,14 @@ const AddContact = () => {
   const [telephone, setTelephone] = useState('')
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
+
+  const getNextId = () => {
+    const lastId =
+      contacts.length > 0 ? parseInt(contacts[contacts.length - 1].id) : 0
+    return String(lastId + 1)
+  }
+
+  const id = getNextId()
 
   ///////////// NAME FUNCTION
   const handleInputName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +62,7 @@ const AddContact = () => {
     }
     dispatch(
       addContact({
-        id: telephone,
+        id: id,
         name: fullName,
         telephone,
         email

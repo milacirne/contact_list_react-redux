@@ -4,7 +4,7 @@ import Home from './pages/Home'
 import Header from './components/Header'
 import AddContact from './pages/AddContact'
 import EditContact from './pages/EditContact'
-import Error from './pages/Home/Error'
+import Error from './pages/Error'
 
 const RoutesApp = () => {
   return (

@@ -13,7 +13,7 @@ const EditContact = () => {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const { contacts } = useSelector((state: RootReducer) => state.contacts)
-  const contact = contacts.filter((contact) => contact.id === id)
+  const contact = contacts.filter((contact) => contact.id === (id ?? 0))
   const { name, telephone, email } = contact[0]
 
   const [firstName, lastName] = name.split(' ')
@@ -53,22 +53,15 @@ const EditContact = () => {
       !editedEmail ||
       !editedTelephone
     ) {
-      return (
-        <S.ErrorMessage>Please fill in all fields on the form</S.ErrorMessage>
-      )
-    }
-    if (
-      !editedFirstName ||
-      !editedLastName ||
-      !editedEmail ||
-      !editedTelephone
-    ) {
       setError('Please fill in all fields on the form')
       return
     }
+
+    const safeId = id || ''
+
     dispatch(
       editContact({
-        id: editedTelephone,
+        id: safeId,
         name: editedFullName,
         telephone: editedTelephone,
         email: editedEmail
@@ -90,7 +83,6 @@ const EditContact = () => {
               name="firstName"
               value={editedFirstName}
               onChange={handleInputName}
-              placeholder={editedFirstName}
               required
             />
             <S.SecondInput
@@ -99,7 +91,6 @@ const EditContact = () => {
               name="lastName"
               value={editedLastName}
               onChange={handleInputName}
-              placeholder={editedLastName}
               required
             />
           </S.InputContainer>
@@ -113,7 +104,6 @@ const EditContact = () => {
               name="email"
               value={editedEmail}
               onChange={(event) => setEditedEmail(event.target.value)}
-              placeholder={editedEmail}
               required
             />
           </S.InputContainer>
@@ -128,7 +118,6 @@ const EditContact = () => {
               name="telephone"
               value={editedTelephone}
               onChange={(event) => setEditedTelephone(event.target.value)}
-              placeholder={editedTelephone}
               required
             />
           </S.InputContainer>
