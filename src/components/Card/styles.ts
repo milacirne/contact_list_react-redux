@@ -11,7 +11,7 @@ export const CardContainer = styled.div`
 
   @media (max-width: 768px) {
     font-size: 5px;
-    height: 180px;
+    height: 148px;
   }
 `
 
@@ -39,6 +39,16 @@ export const CardHead = styled.tr`
   }
 `
 
+export const CardHeadField = styled.th`
+  width: 200px;
+  max-width: 200px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 8px 0;
+  }
+`
+
 export const CardHeadIcons = styled.i`
   font-size: 24px;
   margin-right: 8px;
@@ -53,6 +63,28 @@ export const CardBody = styled.tr`
     display: flex;
     flex-direction: column;
     padding: 0 12px;
+  }
+`
+
+export const CardBodyField = styled.td`
+  width: 200px;
+  max-width: 200px;
+  overflow-x: hidden;
+
+  @media (max-width: 768px) {
+    padding: 8px 0;
+    width: 180px;
+    white-space: nowrap;
+  }
+`
+
+export const CardButtonField = styled.th`
+  width: 100px;
+  padding: 0 auto;
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    padding-top: 8px;
   }
 `
 
@@ -79,36 +111,5 @@ export const CardButtonRemove = styled(CardButton)`
 
   &:hover {
     background-color: ${variables.red};
-  }
-`
-export const CardHeadField = styled.th`
-  width: 200px;
-  max-width: 200px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 12px 0;
-  }
-`
-
-export const CardBodyField = styled.td`
-  width: 200px;
-  max-width: 200px;
-  overflow-x: hidden;
-
-  @media (max-width: 768px) {
-    padding: 12px 0;
-    width: 180px;
-    white-space: nowrap;
-  }
-`
-
-export const CardButtonField = styled.th`
-  width: 100px;
-  padding: 0 auto;
-
-  @media (max-width: 768px) {
-    margin: 0 auto;
-    padding-top: 16px;
   }
 `
